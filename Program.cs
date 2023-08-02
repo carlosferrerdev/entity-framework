@@ -1,6 +1,7 @@
 ﻿using System;
 using Blog.Data;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyApp // Note: actual namespace depends on the project name.
 {
@@ -19,26 +20,29 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 // context.Tags.Add(tag2);
                 // context.SaveChanges();
 
-                // UPDATE
-                // var tag = context.Tags.FirstOrDefault(x => x.Id == 1);
+                // UPDATE - NÃO USAR ASNOTRACKING
+                // var tag = context.Tags.FirstOrDefault(x => x.Id == 2);
                 // tag.Name = ".NET";
                 // tag.Slug = "dotnet";
 
                 // context.Update(tag);
                 // context.SaveChanges();
 
-                //DELETE
+                //DELETE - NÃO USAR ASNOTRACKING
                 // var tag = context.Tags.FirstOrDefault(x => x.Id == 1);
                 // context.Tags.Remove(tag);
                 // context.SaveChanges();
 
                 //READ
-                var tags = context.Tags.ToList();
+                // var tags = context.Tags.AsNoTracking().ToList();
 
-                foreach(var tag in tags)
-                {
-                    Console.WriteLine(tag.Name);
-                }
+                // foreach(var tag in tags)
+                // {
+                //     Console.WriteLine(tag.Name);
+                // }
+
+                var tag = context.Tags.AsNoTracking().FirstOrDefault(x => x.Id == 2);
+                Console.WriteLine(tag?.Name);
 
             }
         }
